@@ -13,6 +13,8 @@ mfx_version_micro = version_arr[2]
 soversion = 0
 libversion = '@0@.@1@.0'.format(soversion, mfx_version_minor.to_int() * 100 + mfx_version_micro.to_int())
 
+plugins_install_dir = '@0@/gstreamer-1.0'.format(get_option('libdir'))
+
 cdata = configuration_data()
 cdata.set ('GstMfx_PACKAGE', 'gstmfx')
 cdata.set ('GstMfx_PACKAGE_NAME', 'GStreamer Media SDK')
@@ -201,5 +203,6 @@ gstvideo = shared_library('gstmfx',
   version: libversion,
   soversion: soversion,
   install: true,
+  install_dir : plugins_install_dir,
   dependencies: mfx_deps,
 )
